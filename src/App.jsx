@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Counters from './components/counters';
 import Scoreboard from './components/scoreboard';
+import Banner from './components/banner';
 import {} from './css/App.css';
 
 class App extends Component {
@@ -10,15 +11,32 @@ class App extends Component {
       { id: 2, count: 0, title: 'ford' },
       { id: 3, count: 0, title: 'chevy' },
       { id: 4, count: 0, title: 'toyota' },
-      { id: 5, count: 0, title: 'volvo' }
+      { id: 5, count: 0, title: 'mercedes benz' },
+      { id: 6, count: 0, title: 'volvo' }
     ],
-    winner: null
+    winner: 'Let The Games Begin',
+    allZeros: true
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const winner = this.findLargestCount(this.state.counters);
-    if (prevState.winner !== winner) this.setState({ winner });
+    let winner = this.findLargestCount(this.state.counters);
+    if (prevState.winner !== winner && !this.state.allZeros) {
+      this.setState({ winner });
+    }
   }
+
+  checkForNonZeros = () => {
+    let non_zeros = 0;
+    this.state.counters.forEach(counter => {
+      if (counter.count > 0) {
+        non_zeros++;
+      }
+    });
+    //if all zeros
+    if (non_zeros === 0) {
+      this.setState({ winner: 'Let The Games Begin', allZeros: true });
+    }
+  };
 
   findLargestCount = counters => {
     let highestCount = counters[0];
@@ -41,7 +59,10 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].count++;
-    this.setState({ counters });
+    this.setState({
+      counters: counters,
+      allZeros: false
+    });
   };
 
   handleDecrement = counter => {
@@ -49,7 +70,7 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].count--;
-    this.setState({ counters });
+    this.setState({ counters }, this.checkForNonZeros);
   };
 
   handleDelete = counterId => {
@@ -60,18 +81,7 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class='container'>
-          <div className='row mt-5'>
-            <h1 class='display-4'>
-              <b>Car Counter</b>
-            </h1>
-          </div>
-          <div className='row'>
-            <p class='lead'>
-              A simple web app to entertain your kids in the car!
-            </p>
-          </div>
-        </div>
+        <Banner />
         <main className='container mt-3'>
           <Scoreboard winner={this.state.winner} />
           <Counters

@@ -2,8 +2,13 @@ body {
   background-color: antiquewhite;
 }
 
-.flex-col {
+.col-style {
   background-color: white;
+}
+
+.flex-col {
+  display: flex;
+  justify-content: center;
 }
 
 .row {

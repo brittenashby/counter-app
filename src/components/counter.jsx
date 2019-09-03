@@ -4,13 +4,15 @@ class Counter extends Component {
   render() {
     return (
       <div className='row'>
-        <div className='col-1 flex-col pl-4 py-3 '>
-          <span className={this.getTitleClasses()}>
-            {this.props.counter.title}
-          </span>
+        <div className='col-2 col-style flex-col pl-4 py-3 '>
+          <h4>
+            <span className={this.getTitleClasses()}>
+              {this.props.counter.title}
+            </span>
+          </h4>
         </div>
 
-        <div className='col-3 flex-col text-center py-3'>
+        <div className='col-3 col-style text-center py-3'>
           <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
           <button
             className='btn btn-primary btn-sm'
