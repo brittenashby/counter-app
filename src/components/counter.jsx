@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import '../css/counter.css';
 
 class Counter extends Component {
   render() {
     return (
       <div className='row'>
-        <div className='col-2 col-style flex-col pl-4 py-3 '>
+        <div className='col-2 col-style flex-col pl-4 py-3 Larger shadow '>
           <h4>
             <span className={this.getTitleClasses()}>
               {this.props.counter.title}
@@ -12,7 +13,7 @@ class Counter extends Component {
           </h4>
         </div>
 
-        <div className='col-3 col-style text-center py-3'>
+        <div className='col-3 col-style text-center py-3 '>
           <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
           <button
             className='btn btn-primary btn-sm'
