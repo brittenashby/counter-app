@@ -1,0 +1,12 @@
+body {
+  background-color: antiquewhite;
+}
+
+.flex-col {
+  background-color: white;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
