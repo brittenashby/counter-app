@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Counters from './components/counters';
 import Scoreboard from './components/scoreboard';
 import Banner from './components/banner';
+import DialogueBox from './components/dialogue';
 import {} from './css/App.css';
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
       { id: 6, count: 0, title: 'volvo' }
     ],
     winner: 'Let The Games Begin',
-    allZeros: true
+    allZeros: true,
+    dialogueBoxActive: false
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -78,19 +80,40 @@ class App extends Component {
     this.setState({ counters });
   };
 
+  handleAdd = () => {
+    const toggle = !this.state.dialogueBoxActive;
+    this.setState({ dialogueBoxActive: toggle });
+  };
+
+  handleSubmit = title => {
+    const counter = {
+      count: 0,
+      title: title,
+      id: this.state.counters.length + 1
+    };
+    let counters = this.state.counters;
+    counters.push(counter);
+    this.setState({ counters });
+  };
+
   render() {
     return (
       <React.Fragment>
         <Banner />
-        <main className='container mt-3'>
+        <main className='container mt-3 mb-5'>
           <Scoreboard winner={this.state.winner} />
           <Counters
+            active={this.state.dialogueBoxActive}
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
+            onAdd={this.handleAdd}
           />
+          {this.state.dialogueBoxActive && (
+            <DialogueBox onSubmit={this.handleSubmit} />
+          )}
         </main>
       </React.Fragment>
     );

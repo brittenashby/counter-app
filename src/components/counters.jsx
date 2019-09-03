@@ -25,13 +25,18 @@ class Counters extends Component {
           </button>
           <button
             className='btn btn-success btn m-4'
-            // onClick={this.props.onReset}
+            onClick={this.props.onAdd}
           >
-            <b>Add</b>
+            <b>{this.formatAddBtn()}</b>
           </button>
         </div>
       </React.Fragment>
     );
+  }
+
+  formatAddBtn() {
+    if (this.props.active) return 'Cancel';
+    else return 'Add';
   }
 }
 
