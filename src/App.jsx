@@ -98,7 +98,7 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="container-fluid">
         <Banner />
         <main className='container mt-3 mb-5'>
           <Scoreboard winner={this.state.winner} />
@@ -115,7 +115,7 @@ class App extends Component {
             <DialogueBox onSubmit={this.handleSubmit} />
           )}
         </main>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -1,7 +1,11 @@
 .badge-warning {
-    background-color: rgb(114, 155, 216);
+    background-color: rgb(45, 196, 255);
 }
 
 .badge-success {
-    background-color: rgb(230, 197, 90);
+    background-color: rgb(255, 196, 0);
+}
+
+.btn-danger {
+    background-color: red;
 }

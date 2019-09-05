@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { directive } from '@babel/types';
+import '../css/dialogue.css';
 
 class dialogue extends Component {
   state = {
@@ -25,7 +26,7 @@ class dialogue extends Component {
           </div>
         </div>
         <div className='row'>
-          <div className='col-2 flex-col'>
+          <div className='col-2 flex-col mt-2'>
             <button
               onClick={() => {
                 this.props.onSubmit(this.state.title);

@@ -1,9 +1,13 @@
 body {
-  background-color: rgb(183, 221, 247);
+  background-color: #96E5E9;
 }
 
 .col-style {
   background-color: white;
+}
+
+.container-fluid {
+  padding: 0px;
 }
 
 .flex-col {
